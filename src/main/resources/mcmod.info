@@ -1,0 +1,16 @@
+[
+{
+  "modid": "horse.ponecraft.earth",
+  "name": "Ponecraft Earth Pony",
+  "description": "Additions for Earth Ponies on Ponecraft",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["EmptyAudio"],
+  "credits": "The Forge and FML guys and everyone on MLPG",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": ["harvestcraft"]
+}
+]
