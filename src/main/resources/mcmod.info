@@ -12,5 +12,33 @@
   "logoFile": "",
   "screenshots": [],
   "dependencies": ["harvestcraft"]
+},
+{
+  "modid": "horse.ponecraft.pegasus",
+  "name": "Ponecraft Earth Pegasus",
+  "description": "Additions for Pegasi on Ponecraft",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["EmptyAudio"],
+  "credits": "The Forge and FML guys and everyone on MLPG",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+},
+{
+  "modid": "horse.ponecraft.food",
+  "name": "Ponecraft Food",
+  "description": "Nutrition system for Ponecraft",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["EmptyAudio"],
+  "credits": "The Forge and FML guys and everyone on MLPG",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": ["harvestcraft"]
 }
 ]
