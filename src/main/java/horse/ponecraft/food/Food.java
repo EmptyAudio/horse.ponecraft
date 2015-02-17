@@ -67,8 +67,6 @@ public class Food
     @EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
-		Console.out().println("************** Post-init **************");
-		
 		calculateNutrientMap();
     }
 
