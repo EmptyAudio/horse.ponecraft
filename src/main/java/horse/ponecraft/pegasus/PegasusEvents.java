@@ -24,7 +24,7 @@ public class PegasusEvents
     				player.getFoodStats().addExhaustion(1f / 45f);
     			}
     			
-    	    	if (player.getFoodStats().getFoodLevel() <= 6)
+    	    	if (player.getFoodStats().getFoodLevel() <= 6 || player.inventory.armorItemInSlot(2) != null)
     	    	{
     	    		player.capabilities.allowFlying = false;
     	    		player.capabilities.isFlying = false;
