@@ -33,10 +33,4 @@ public class Earth
     {
     	proxy.init(event);
     }
-    
-    @EventHandler
-    public void postInit(FMLPostInitializationEvent event)
-    {
-    	proxy.postInit(event);
-    }
 }

@@ -3,6 +3,8 @@ package horse.ponecraft.pegasus;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.forgeessentials.api.APIRegistry;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -19,6 +21,7 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
+import net.minecraftforge.permissions.PermissionsManager.RegisteredPermValue;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -36,6 +39,8 @@ public class Pegasus
     public static final String MODID = "horse.ponecraft.pegasus";
     public static final String VERSION = "1.0";
     
+    public static final String FlightPermissionName = "horse.ponecraft.pegasus.flight";
+    
     public static final ItemGemShard rubyShard = new ItemGemShard("rubyShard");
     public static final ItemGemShard sapphireShard = new ItemGemShard("sapphireShard");
     public static final ItemGemShard peridotShard = new ItemGemShard("peridotShard");
@@ -46,6 +51,8 @@ public class Pegasus
         MinecraftForge.EVENT_BUS.register(new PegasusEvents());
         
         TConstructRegistry.activeModifiers.add(new PegasusToolMod());
+        
+        APIRegistry.perms.registerPermission(FlightPermissionName, RegisteredPermValue.FALSE, "Allows pegasus-style flight when granted.");
         
         TConstructIMC.addMaterial(1001, "Ruby", 2, 400, 800, 1, 0.8f, 0, 0, 0, EnumChatFormatting.RED, 180, 72, 72, 1, 1, 1, 1);
         TConstructIMC.addMaterial(1002, "Sapphire", 2, 400, 800, 1, 0.8f, 0, 0, 0, EnumChatFormatting.BLUE, 72, 112, 208, 1, 1, 1, 1);

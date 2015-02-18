@@ -1,5 +1,7 @@
 package horse.ponecraft.pegasus;
 
+import com.forgeessentials.api.APIRegistry;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -24,7 +26,9 @@ public class PegasusEvents
     				player.getFoodStats().addExhaustion(1f / 45f);
     			}
     			
-    	    	if (player.getFoodStats().getFoodLevel() <= 6 || player.inventory.armorItemInSlot(2) != null)
+    	    	if (player.getFoodStats().getFoodLevel() <= 6 ||
+    	    		player.inventory.armorItemInSlot(2) != null ||
+    	    		!APIRegistry.perms.checkPermission(player, Pegasus.FlightPermissionName))
     	    	{
     	    		player.capabilities.allowFlying = false;
     	    		player.capabilities.isFlying = false;
