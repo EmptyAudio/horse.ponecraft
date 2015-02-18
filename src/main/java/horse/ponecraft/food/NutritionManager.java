@@ -19,8 +19,8 @@ import squeek.applecore.api.AppleCoreAPI;
 
 public class NutritionManager
 {
-	public static final Map<String, boolean[]> nutrients = new HashMap<>();
-	public static final Map<String, String[]> ingredients = new HashMap<>();
+	public static final Map<String, boolean[]> nutrients = new HashMap<String, boolean[]>();
+	public static final Map<String, String[]> ingredients = new HashMap<String, String[]>();
 	
     private static final int VEGETABLE = 0;
     private static final int FRUIT = 1;

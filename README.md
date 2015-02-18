@@ -43,11 +43,3 @@ With all those downloaded, you're ready to set things up:
   * ```gradlew eclipse```
 * Put all the prerequisite mods into ```eclipse/mods```
 * Open up Eclipse and set ```eclipse``` as your workspace
-
-To actually get a test world to work:
-* Run the game
-* Close Minecraft
-* Edit eclipse/ForgeEssentials/main.cfg
-  * Change line 50 to ```B:WorldBorder=false```. There's a bug in the ForgeEssentials WorldBorder module that causes a crash soon after joining a server.
-
-After that everything should work fine. If it doesn't, open up an issue and include any crash logs.
