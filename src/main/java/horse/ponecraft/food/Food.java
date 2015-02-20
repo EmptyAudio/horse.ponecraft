@@ -1,5 +1,7 @@
 package horse.ponecraft.food;
 
+import horse.ponecraft.earth.BlockCooktop;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -18,6 +20,7 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -32,100 +35,25 @@ public class Food
 {
     public static final String MODID = "horse.ponecraft.food";
     public static final String VERSION = "1.0";
-    
-    public static ItemStack juicer;
-    public static ItemStack cuttingboard;
-    public static ItemStack pot;
-    public static ItemStack skillet;
-    public static ItemStack saucepan;
-    public static ItemStack bakeware;
-    public static ItemStack mortarandpestle;
-    public static ItemStack mixingbowl;
-    
-    private static final HashMap<String, boolean[]> nutrientMap = new HashMap<String, boolean[]>();
-    
-    public static Configuration config;
+        
+    @SidedProxy(modId = MODID, clientSide = "horse.ponecraft.food.ClientProxy", serverSide = "horse.ponecraft.food.CommonProxy")
+    public static CommonProxy proxy;
     
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
-    	config = new Configuration(event.getSuggestedConfigurationFile());
-    	
-    	config.load();
+    	proxy.preInit(event);
     }
     
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
-        juicer = new ItemStack((Item)Item.itemRegistry.getObject("harvestcraft:juicerItem"));
-        cuttingboard = new ItemStack((Item)Item.itemRegistry.getObject("harvestcraft:cuttingboardItem"));
-        pot = new ItemStack((Item)Item.itemRegistry.getObject("harvestcraft:potItem"));
-        skillet = new ItemStack((Item)Item.itemRegistry.getObject("harvestcraft:skilletItem"));
-        saucepan = new ItemStack((Item)Item.itemRegistry.getObject("harvestcraft:saucepanItem"));
-        bakeware = new ItemStack((Item)Item.itemRegistry.getObject("harvestcraft:bakewareItem"));
-        mortarandpestle = new ItemStack((Item)Item.itemRegistry.getObject("harvestcraft:mortarandpestleItem"));
-        mixingbowl = new ItemStack((Item)Item.itemRegistry.getObject("harvestcraft:mixingbowlItem"));
-        
-        MinecraftForge.EVENT_BUS.register(new FoodEvents());
+    	proxy.init(event);
     }
     
     @EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
-    	NutritionManager.initialize(config);
-    	
-    	config.save();
-    }
-
-	private ArrayList<IRecipe> collectRecipes()
-	{
-		ArrayList<IRecipe> foodRecipes = new ArrayList<IRecipe>();
-
-        for (Object recipe : CraftingManager.getInstance().getRecipeList())
-        {
-        	if (recipe instanceof ShapelessOreRecipe)
-        	{
-        		ShapelessOreRecipe shapeless = (ShapelessOreRecipe)recipe;
-        		
-        		for (Object item : shapeless.getInput())
-        		{
-        			if (item instanceof ItemStack)
-        			{
-	        			if (isHarvestRecipe((ItemStack)item))
-	        			{
-	        				foodRecipes.add((IRecipe)recipe);
-	        			}
-        			}
-        			else if (item instanceof ArrayList)
-        			{
-        				ArrayList list = (ArrayList)item;
-            			
-        				for (Object listitem : list)
-        				{
-		        			if (isHarvestRecipe((ItemStack)listitem))
-		        			{
-		        				foodRecipes.add((IRecipe)recipe);
-		        				
-		        				break;
-		        			}
-        				}
-        			}
-        		}
-        	}
-        }
-        
-        return foodRecipes;
-	}
-    
-    private boolean isHarvestRecipe(ItemStack target)
-    {
-		return OreDictionary.itemMatches(target, juicer, false) ||
-				OreDictionary.itemMatches(target, cuttingboard, false) ||
-				OreDictionary.itemMatches(target, pot, false) ||
-				OreDictionary.itemMatches(target, skillet, false) ||
-				OreDictionary.itemMatches(target, saucepan, false) ||
-				OreDictionary.itemMatches(target, bakeware, false) ||
-				OreDictionary.itemMatches(target, mortarandpestle, false) ||
-				OreDictionary.itemMatches(target, mixingbowl, false);
+    	proxy.postInit(event);
     }
 }

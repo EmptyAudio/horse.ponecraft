@@ -1,6 +1,5 @@
 package horse.ponecraft.earth;
 
-import squeek.applecore.api.AppleCoreAPI;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;

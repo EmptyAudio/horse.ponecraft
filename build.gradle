@@ -15,9 +15,36 @@ buildscript {
     }
 }
 
+repositories {
+  maven {
+        name 'CB Maven FS'
+        url "http://chickenbones.net/maven/"
+    }
+	maven {
+         name "ProfMobius Maven FS"
+         url "http://mobiusstrip.eu/maven"
+     }
+    maven {
+        name 'DVS1 Maven FS'
+        url 'http://dvs1.progwml6.com/files/maven/'
+    }
+	maven {
+          name 'ForgeFS'
+          url 'http://files.minecraftforge.net/maven'
+     }
+    maven {
+        name "mvnmrtjp"
+        url "http://projectredwiki.com/maven"
+    }
+    maven {
+        name "applecore"
+		url "http://www.ryanliptak.com/maven/"
+	}
+}
+
 apply plugin: 'forge'
 
-version = "1.0"
+version = "0.1"
 group= "horse.ponecraft" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "horse.ponecraft"
 
@@ -39,6 +66,14 @@ dependencies {
     // for more info...
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
+    
+    compile "codechicken:CodeChickenLib:1.7.10-1.1.1.106:dev"
+    compile "codechicken:CodeChickenCore:1.7.10-1.0.4.29:dev"
+    compile "codechicken:NotEnoughItems:1.7.10-1.0.3.72:dev"
+    compile "codechicken:ForgeMultipart:1.7.10-1.1.0.314:dev"
+    compile "mantle:Mantle:1.7.10-0.3.2.jenkins187:deobf"
+    compile "tconstruct:TConstruct:1.7.10-1.8.2.build858:deobf"
+    compile "applecore:AppleCore:1.7.10-1.2.1+101.b8584:deobf"
 }
 
 processResources

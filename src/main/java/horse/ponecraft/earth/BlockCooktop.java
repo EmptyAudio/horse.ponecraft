@@ -2,6 +2,7 @@ package horse.ponecraft.earth;
 
 import java.util.Random;
 
+import scala.Console;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -65,7 +66,7 @@ public class BlockCooktop extends BlockContainer
 			return this.topIcon;
 		}
 		
-		switch (((TileEntityCooktop)blockAccess.getTileEntity(x, y, z)).getFacingDireciton())
+		switch (((TileEntityCooktop)blockAccess.getTileEntity(x, y, z)).getFacingDirection())
 		{
 		case 2:
 			switch (side)

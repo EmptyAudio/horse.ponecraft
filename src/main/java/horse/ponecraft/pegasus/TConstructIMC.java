@@ -17,7 +17,7 @@ public class TConstructIMC
     		float handleModifier,
     		int reinforced,
     		float stonebound,
-    		int jagged,
+    		float jagged,
     		EnumChatFormatting style,
     		int colorRed,
     		int colorGreen,

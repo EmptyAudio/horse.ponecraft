@@ -27,7 +27,7 @@ public class TileEntityCooktop extends TileEntity implements ISidedInventory
 		this.slots = new ItemStack[14];
 	}
 	
-	public int getFacingDireciton()
+	public int getFacingDirection()
 	{
 		return this.facing;
 	}

@@ -23,7 +23,6 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import scala.Console;
-import squeek.applecore.api.food.FoodEvent;
 import thaumcraft.api.research.ResearchCategories;
 
 @Mod(modid = Unicorn.MODID, version = Unicorn.VERSION, name = "Ponecraft Unicorn", dependencies = "after:THAUMCRAFT")

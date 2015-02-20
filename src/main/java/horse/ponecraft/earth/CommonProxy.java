@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 import scala.Console;
-import squeek.applecore.api.AppleCoreAPI;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -29,17 +28,15 @@ public class CommonProxy
 {
     public static Item oven;
     
-    public static final BlockCooktop cooktop = new BlockCooktop("cooktop");
-
     public void init(FMLInitializationEvent event)
     {
         oven = (Item)Item.itemRegistry.getObject("harvestcraft:oven");
         
-        GameRegistry.registerBlock(cooktop, cooktop.getUnlocalizedName());
+        GameRegistry.registerBlock(Earth.cooktop, Earth.cooktop.getUnlocalizedName());
         
         GameRegistry.registerTileEntity(TileEntityCooktop.class, "CooktopTileEntity");
         
-        GameRegistry.addShapedRecipe(new ItemStack(cooktop), "sss", "coc", "iri",
+        GameRegistry.addShapedRecipe(new ItemStack(Earth.cooktop), "sss", "coc", "iri",
         		's', new ItemStack(Blocks.stone_slab),
         		'c', new ItemStack(Blocks.chest),
         		'o', new ItemStack(oven),

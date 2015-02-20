@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
@@ -19,6 +20,15 @@ import squeek.applecore.api.AppleCoreAPI;
 
 public class NutritionManager
 {
+    public static ItemStack juicer;
+    public static ItemStack cuttingboard;
+    public static ItemStack pot;
+    public static ItemStack skillet;
+    public static ItemStack saucepan;
+    public static ItemStack bakeware;
+    public static ItemStack mortarandpestle;
+    public static ItemStack mixingbowl;
+    
 	public static final Map<String, boolean[]> nutrients = new HashMap<String, boolean[]>();
 	public static final Map<String, String[]> ingredients = new HashMap<String, String[]>();
 	
@@ -30,6 +40,15 @@ public class NutritionManager
     
 	public static void initialize(Configuration config)
 	{
+        juicer = new ItemStack((Item)Item.itemRegistry.getObject("harvestcraft:juicerItem"));
+        cuttingboard = new ItemStack((Item)Item.itemRegistry.getObject("harvestcraft:cuttingboardItem"));
+        pot = new ItemStack((Item)Item.itemRegistry.getObject("harvestcraft:potItem"));
+        skillet = new ItemStack((Item)Item.itemRegistry.getObject("harvestcraft:skilletItem"));
+        saucepan = new ItemStack((Item)Item.itemRegistry.getObject("harvestcraft:saucepanItem"));
+        bakeware = new ItemStack((Item)Item.itemRegistry.getObject("harvestcraft:bakewareItem"));
+        mortarandpestle = new ItemStack((Item)Item.itemRegistry.getObject("harvestcraft:mortarandpestleItem"));
+        mixingbowl = new ItemStack((Item)Item.itemRegistry.getObject("harvestcraft:mixingbowlItem"));
+        
 		loadFromConfig(config);
 		
     	for (Object item : CraftingManager.getInstance().getRecipeList())

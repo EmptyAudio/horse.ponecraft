@@ -11,6 +11,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
@@ -73,5 +74,15 @@ public class Pegasus
         TConstructIMC.addPartBuilderMaterial(1001, rubyGem, new ItemStack(rubyShard), 2);
         TConstructIMC.addPartBuilderMaterial(1002, sapphireGem, new ItemStack(sapphireShard), 2);
         TConstructIMC.addPartBuilderMaterial(1003, peridotGem, new ItemStack(peridotShard), 2);
+        
+        for (Object key : Item.itemRegistry.getKeys())
+        {
+        	if (ItemArmor.class.isAssignableFrom(Item.itemRegistry.getObject(key).getClass()))
+        	{
+        		Console.out().println(key);
+        	}
+        }
+        
+		Console.out().println("done");        
     }    
 }
