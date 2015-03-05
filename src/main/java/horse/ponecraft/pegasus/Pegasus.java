@@ -62,6 +62,8 @@ public class Pegasus
 		    "betterstorage:enderBackpack",
 		    "betterstorage:thaumcraftBackpack",
 		    "BiblioCraft:item.BiblioGlasses",
+		    "BiblioCraft:item.BiblioGlasses#1",
+		    "BiblioCraft:item.BiblioGlasses#2",
 		    "ExtraUtilities:sonar_goggles",
 		    "minecraft:chainmail_boots",
 		    "minecraft:chainmail_chestplate",
@@ -132,11 +134,21 @@ public class Pegasus
     	
     	for (String name : allowedFlightArmorNames)
     	{
+    		int meta = 0;
+    		
+    		if (name.contains("#"))
+    		{
+    			meta = Integer.parseInt(name.substring(name.indexOf("#") + 1));
+    			name = name.substring(0, name.indexOf("#"));
+    		}
+    		
     		Item armorItem = (Item)Item.itemRegistry.getObject(name);
     		
     		if (armorItem != null)
     		{
-    			allowableFlightArmor.add(new ItemStack(armorItem, 1));
+    			allowableFlightArmor.add(new ItemStack(armorItem, 1, meta));
+    			
+    			Console.out().println(allowableFlightArmor.get(allowableFlightArmor.size() - 1).getDisplayName());
     		}
     	}
     }    

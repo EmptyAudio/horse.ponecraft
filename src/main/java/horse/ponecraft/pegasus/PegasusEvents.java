@@ -110,7 +110,7 @@ public class PegasusEvents
 			
 			for (ItemStack allowed : Pegasus.allowableFlightArmor)
 			{
-				if (ItemStack.areItemStacksEqual(armor, allowed))
+				if (armor.getUnlocalizedName().equals(allowed.getUnlocalizedName()))
 				{
 					okay = true;
 					
