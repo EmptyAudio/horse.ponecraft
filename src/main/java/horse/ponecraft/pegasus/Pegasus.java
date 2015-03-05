@@ -2,6 +2,7 @@ package horse.ponecraft.pegasus;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import com.forgeessentials.api.APIRegistry;
 
@@ -20,6 +21,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import net.minecraftforge.permissions.PermissionsManager.RegisteredPermValue;
@@ -28,6 +30,7 @@ import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import scala.Console;
@@ -45,6 +48,56 @@ public class Pegasus
     public static final ItemGemShard rubyShard = new ItemGemShard("rubyShard");
     public static final ItemGemShard sapphireShard = new ItemGemShard("sapphireShard");
     public static final ItemGemShard peridotShard = new ItemGemShard("peridotShard");
+    
+    public static List<ItemStack> allowableFlightArmor;
+    
+    private String[] allowedFlightArmorNames = new String[]
+		{
+		    "betterstorage:backpack",
+		    "betterstorage:cardboardBoots",
+		    "betterstorage:cardboardChestplate",
+		    "betterstorage:cardboardHelmet",
+		    "betterstorage:cardboardLeggings",
+		    "betterstorage:drinkingHelmet",
+		    "betterstorage:enderBackpack",
+		    "betterstorage:thaumcraftBackpack",
+		    "BiblioCraft:item.BiblioGlasses",
+		    "ExtraUtilities:sonar_goggles",
+		    "minecraft:chainmail_boots",
+		    "minecraft:chainmail_chestplate",
+		    "minecraft:chainmail_helmet",
+		    "minecraft:chainmail_leggings",
+		    "minecraft:leather_boots",
+		    "minecraft:leather_chestplate",
+		    "minecraft:leather_helmet",
+		    "minecraft:leather_leggings",
+		    "Natura:natura.armor.impboots",
+		    "Natura:natura.armor.imphelmet",
+		    "Natura:natura.armor.impjerkin",
+		    "Natura:natura.armor.impleggings",
+		    "Railcraft:armor.goggles",
+		    "Railcraft:armor.overalls",
+		    "witchery:hunterboots",
+		    "witchery:hunterbootssilvered",
+		    "witchery:huntercoat",
+		    "witchery:huntercoatsilvered",
+		    "witchery:hunterhat",
+		    "witchery:hunterhatsilvered",
+		    "witchery:hunterlegs",
+		    "witchery:hunterlegssilvered",
+	    };
+ 
+    @EventHandler
+    public void preInit(FMLPreInitializationEvent event)
+    {
+    	Configuration config = new Configuration(event.getSuggestedConfigurationFile());
+    	
+    	config.load();
+    	
+    	allowedFlightArmorNames = config.getStringList("allowedFlightArmorNames", "flight", allowedFlightArmorNames, "A list of item names of armor that can be worn without preventing flight.");
+
+    	config.save();
+    }
     
     @EventHandler
     public void init(FMLInitializationEvent event)
@@ -75,14 +128,16 @@ public class Pegasus
         TConstructIMC.addPartBuilderMaterial(1002, sapphireGem, new ItemStack(sapphireShard), 2);
         TConstructIMC.addPartBuilderMaterial(1003, peridotGem, new ItemStack(peridotShard), 2);
         
-        for (Object key : Item.itemRegistry.getKeys())
-        {
-        	if (ItemArmor.class.isAssignableFrom(Item.itemRegistry.getObject(key).getClass()))
-        	{
-        		Console.out().println(key);
-        	}
-        }
-        
-		Console.out().println("done");        
+    	allowableFlightArmor = new ArrayList<ItemStack>();
+    	
+    	for (String name : allowedFlightArmorNames)
+    	{
+    		Item armorItem = (Item)Item.itemRegistry.getObject(name);
+    		
+    		if (armorItem != null)
+    		{
+    			allowableFlightArmor.add(new ItemStack(armorItem, 1));
+    		}
+    	}
     }    
 }
