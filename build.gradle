@@ -96,3 +96,11 @@ processResources
     }
 }
 
+jar
+{
+    manifest
+    {
+        attributes 'FMLCorePlugin': 'horse.ponecraft.unicorn.UnicornCore'
+        attributes 'FMLCorePluginContainsFMLMod': 'true'
+    }
+}
