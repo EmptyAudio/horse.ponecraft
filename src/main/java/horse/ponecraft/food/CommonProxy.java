@@ -21,6 +21,8 @@ public class CommonProxy
 	{
         MinecraftForge.EVENT_BUS.register(new FoodEvents());
         MinecraftForge.EVENT_BUS.register(new BombAssTeaEvents());
+        
+        NutritionTipOverlayHandler.init();
 	}
 	
 	public void postInit(FMLPostInitializationEvent event)
