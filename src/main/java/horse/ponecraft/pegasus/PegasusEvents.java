@@ -27,7 +27,15 @@ public class PegasusEvents
 			{
     			if (player.capabilities.isFlying)    			
     			{
-    				player.getFoodStats().addExhaustion(1f / 45f);
+    				if (player.dimension == -1)
+    				{
+    					// the heat of the nether is extra taxing
+    					player.getFoodStats().addExhaustion(3f / 45f);
+    				}
+    				else
+    				{
+        				player.getFoodStats().addExhaustion(1f / 45f);
+    				}
     			}
     		
     			if (APIRegistry.perms.checkPermission(player, Pegasus.FlightPermissionName))
@@ -40,7 +48,7 @@ public class PegasusEvents
     	    	    		{
     	    	    	    	if (!event.entity.worldObj.isRemote)
     	    	    	    	{
-    	    	    	    		player.addChatComponentMessage(new ChatComponentText("Your wings at too tired to flap! Look out below!"));
+    	    	    	    		player.addChatComponentMessage(new ChatComponentText("Your wings are too tired to flap! Look out below!"));
     	    	    	    	}
     	    	    		}
     	    	    		else
