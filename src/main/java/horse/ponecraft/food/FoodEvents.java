@@ -1,7 +1,14 @@
 package horse.ponecraft.food;
 
+import java.util.UUID;
+
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.client.event.RenderPlayerEvent;
+import scala.Console;
 import squeek.applecore.api.food.FoodEvent;
 import squeek.applecore.api.hunger.HealthRegenEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -9,11 +16,60 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 public class FoodEvents
 {
 	private final int nutrientLength = 20;
+	private final UUID wellFedIdentifier = UUID.fromString("ca81a150-11b9-4e95-ab65-b645dbe20610");
 	
     @SubscribeEvent
     public void onFoodEaten(FoodEvent.FoodEaten event)
     {
+    	NBTTagCompound tag = getPlayerFoodTag(event.player);
+    	
+    	fillNutrients(tag, "v");
+    	fillNutrients(tag, "f");
+    	fillNutrients(tag, "g");
+    	fillNutrients(tag, "p");
+    	fillNutrients(tag, "d");
+    	
+    	float wellFed = calculateWellFed(getPlayerFoodTag(event.player));
+    	
+        IAttributeInstance maxHealth = event.player.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.maxHealth);
+    	
+        try
+        {
+        	maxHealth.removeModifier(maxHealth.getModifier(wellFedIdentifier));
+        }
+        catch (Exception e)
+        {
+        }
+        
+    	if (wellFed > 80.0f)
+    	{
+    		maxHealth.applyModifier(new AttributeModifier(wellFedIdentifier, "horse.ponecraft.food.wellfed", 20.0f, 0));
+    	}
+    	else if (wellFed > 60.0f)
+    	{
+    		maxHealth.applyModifier(new AttributeModifier(wellFedIdentifier, "horse.ponecraft.food.wellfed", 12.0f, 0));
+    	}
+    	else if (wellFed > 40.0f)
+    	{
+    		maxHealth.applyModifier(new AttributeModifier(wellFedIdentifier, "horse.ponecraft.food.wellfed", 6.0f, 0));
+    	}
+    	else if (wellFed > 20.0f)
+    	{
+    		maxHealth.applyModifier(new AttributeModifier(wellFedIdentifier, "horse.ponecraft.food.wellfed", 2.0f, 0));
+    	}
     }
+
+	private void fillNutrients(NBTTagCompound tag, String nutrient)
+	{
+		byte[] nutrients = tag.getByteArray(nutrient);
+    	
+    	for (int x = 0; x < nutrients.length; x++)
+    	{
+    		nutrients[x] = 0;
+    	}
+    	
+    	tag.setByteArray(nutrient, nutrients);
+	}
     
     @SubscribeEvent
     public void onGetRegenTickPeriod(HealthRegenEvent.GetRegenTickPeriod event)

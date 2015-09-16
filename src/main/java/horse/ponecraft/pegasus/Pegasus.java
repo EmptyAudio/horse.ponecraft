@@ -18,6 +18,7 @@ import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.Potion;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
@@ -37,7 +38,7 @@ import scala.Console;
 import squeek.applecore.api.food.FoodEvent;
 import tconstruct.library.TConstructRegistry;
 
-@Mod(modid = Pegasus.MODID, version = Pegasus.VERSION, name = "Ponecraft Pegasus", dependencies = "after:ProjRed|Core")
+@Mod(modid = Pegasus.MODID, version = Pegasus.VERSION, name = "Ponecraft Pegasus", dependencies = "after:ProjRed|Core;after:TConstruct")
 public class Pegasus
 {
     public static final String MODID = "horse.ponecraft.pegasus";
@@ -48,6 +49,12 @@ public class Pegasus
     public static final ItemGemShard rubyShard = new ItemGemShard("rubyShard");
     public static final ItemGemShard sapphireShard = new ItemGemShard("sapphireShard");
     public static final ItemGemShard peridotShard = new ItemGemShard("peridotShard");
+    
+    public static final int RubyMaterial = 1001;
+    public static final int SapphireMaterial = 1002;
+    public static final int PeridotMaterial = 1003;
+    
+    // public static final Potion pacify = new PotionPacify();
     
     public static List<ItemStack> allowableFlightArmor;
     
@@ -110,9 +117,9 @@ public class Pegasus
         
         APIRegistry.perms.registerPermission(FlightPermissionName, RegisteredPermValue.FALSE, "Allows pegasus-style flight when granted.");
         
-        TConstructIMC.addMaterial(1001, "Ruby", 2, 400, 800, 1, 0.8f, 0, 0, 0, EnumChatFormatting.RED, 180, 72, 72, 1, 1, 1, 1);
-        TConstructIMC.addMaterial(1002, "Sapphire", 2, 400, 800, 1, 0.8f, 0, 0, 0, EnumChatFormatting.BLUE, 72, 112, 208, 1, 1, 1, 1);
-        TConstructIMC.addMaterial(1003, "Peridot", 2, 400, 800, 1, 0.8f, 0, 0, 0, EnumChatFormatting.GREEN, 88, 164, 44, 1, 1, 1, 1);
+        TConstructIMC.addMaterial(RubyMaterial, "Ruby", 2, 400, 800, 1, 0.8f, 0, 0, 0, EnumChatFormatting.RED, 180, 72, 72, 1, 1, 1, 1);
+        TConstructIMC.addMaterial(SapphireMaterial, "Sapphire", 2, 400, 800, 1, 0.8f, 0, 0, 0, EnumChatFormatting.BLUE, 72, 112, 208, 1, 1, 1, 1);
+        TConstructIMC.addMaterial(PeridotMaterial, "Peridot", 2, 400, 800, 1, 0.8f, 0, 0, 0, EnumChatFormatting.GREEN, 88, 164, 44, 1, 1, 1, 1);
         
         ItemStack rubyGem = new ItemStack((Item)Item.itemRegistry.getObject("ProjRed|Core:projectred.core.part"), 1, 37);
         ItemStack sapphireGem = new ItemStack((Item)Item.itemRegistry.getObject("ProjRed|Core:projectred.core.part"), 1, 38);

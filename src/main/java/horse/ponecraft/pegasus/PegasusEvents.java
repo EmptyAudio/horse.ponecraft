@@ -2,6 +2,7 @@ package horse.ponecraft.pegasus;
 
 import com.forgeessentials.api.APIRegistry;
 
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
@@ -75,7 +76,7 @@ public class PegasusEvents
     	    	    		{
     	    	    	    	if (!event.entity.worldObj.isRemote)
     	    	    	    	{
-    	    	    	    		player.addChatComponentMessage(new ChatComponentText("You feel like you're too heavy and stiff to fly with that armor on."));
+    	    	    	    		player.addChatComponentMessage(new ChatComponentText("This is too awkward to fly in - you'll have to remove some armor."));
     	    	    	    	}
     	    	    		}
     	    	    		
@@ -98,11 +99,20 @@ public class PegasusEvents
     			}
 			}
     	}
+    	else if (event.entityLiving instanceof EntityLiving)
+    	{
+    		EntityLiving living = (EntityLiving)event.entityLiving;
+    		
+    		//if (living.isPotionActive(Pegasus.pacify))
+    		{
+    			//living.targetTasks.taskEntries
+    		}
+    	}
     }
 
 	private boolean foodAllowsFlight(FoodStats foodStats)
 	{
-		return foodStats.getFoodLevel() > 7;
+		return foodStats.getFoodLevel() >= 7;
 	}
 
 	private boolean armorAllowsFlight(InventoryPlayer inventory)

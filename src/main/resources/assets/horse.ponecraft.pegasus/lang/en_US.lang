@@ -1,6 +1,9 @@
 material.ruby=Ruby
 material.sapphire=Sapphire
 material.peridot=Peridot
+material.ruby.ability=Razor Sharp
+material.sapphire.ability=Pristine
+material.peridot.ability=Resonating
 item.rubyShard.name=Ruby Shard
 item.sapphireShard.name=Sapphire Shard
 item.peridotShard.name=Peridot Shard

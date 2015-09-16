@@ -7,14 +7,27 @@ import cpw.mods.fml.common.network.IGuiHandler;
 
 public class GuiHandler implements IGuiHandler
 {
+	public static final int CooktopGui = 0;
+	public static final int CookbookGui = 1;
+	
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
 	{
-		TileEntity tileEntity = world.getTileEntity(x, y, z);
-		
-		if (tileEntity instanceof TileEntityCooktop)
+		switch (ID)
 		{
-			return new ContainerCooktop(player.inventory, (TileEntityCooktop)tileEntity);
+			case CooktopGui:
+			{
+				TileEntity tileEntity = world.getTileEntity(x, y, z);
+				
+				if (tileEntity instanceof TileEntityCooktop)
+				{
+					return new ContainerCooktop(player.inventory, (TileEntityCooktop)tileEntity);
+				}
+			}
+			case CookbookGui:
+			{
+				return new ContainerCookbook(player.inventory);
+			}
 		}
 		
 		return null;

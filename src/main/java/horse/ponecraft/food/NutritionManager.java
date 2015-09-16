@@ -3,6 +3,7 @@ package horse.ponecraft.food;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -33,15 +34,6 @@ public class NutritionManager
     public static ItemStack mortarandpestle;
     public static ItemStack mixingbowl;
     
-	public static final Map<String, boolean[]> nutrientMap = new HashMap<String, boolean[]>();
-	public static final Map<String, Set<String>> ingredientMap = new HashMap<String, Set<String>>();
-	
-    private static final int VEGETABLE = 0;
-    private static final int FRUIT = 1;
-    private static final int GRAIN = 2;
-    private static final int DAIRY = 3;
-    private static final int PROTEIN = 4;
-    
 	public static void initialize(Configuration config)
 	{
         juicer = new ItemStack((Item)Item.itemRegistry.getObject("harvestcraft:juicerItem"));
@@ -55,8 +47,6 @@ public class NutritionManager
         
 		loadFromConfig(config);
 		
-		ArrayList<HashMap<String, String[]>> recipes = new ArrayList<HashMap<String,String[]>>();
-		
     	for (Object item : CraftingManager.getInstance().getRecipeList())
         {
         	IRecipe recipe = (IRecipe)item;
@@ -65,106 +55,55 @@ public class NutritionManager
         	{
         		if (recipe instanceof ShapedOreRecipe)
         		{
-        			handleRecipe(recipes, recipe.getRecipeOutput(), ((ShapedOreRecipe)recipe).getInput());
+        			handleRecipe(recipe.getRecipeOutput(), ((ShapedOreRecipe)recipe).getInput());
         		}
         		else if (recipe instanceof ShapedRecipes)
         		{
-        			handleRecipe(recipes, recipe.getRecipeOutput(), ((ShapedRecipes)recipe).recipeItems);
+        			handleRecipe(recipe.getRecipeOutput(), ((ShapedRecipes)recipe).recipeItems);
         		}
         		else if (recipe instanceof ShapelessOreRecipe)
         		{
-        			handleRecipe(recipes, recipe.getRecipeOutput(), ((ShapelessOreRecipe)recipe).getInput().toArray());
+        			handleRecipe(recipe.getRecipeOutput(), ((ShapelessOreRecipe)recipe).getInput().toArray());
         		}
         		else if (recipe instanceof ShapelessRecipes)
         		{
-        			handleRecipe(recipes, recipe.getRecipeOutput(), ((ShapelessRecipes)recipe).recipeItems.toArray());
+        			handleRecipe(recipe.getRecipeOutput(), ((ShapelessRecipes)recipe).recipeItems.toArray());
         		}
         	}
-        }
-    	
-    	Console.out();
+        }    	
 	}
 
-    public static boolean hasVegetable(ItemStack food)
-    {
-		return false;
-    }
-    
-    public static boolean hasFruit(ItemStack food)
-    {
-		return false;
-    }
-    
-    public static boolean hasGrain(ItemStack food)
-    {
-		return false;
-    }
-    
-    public static boolean hasProtein(ItemStack food)
-    {
-		return false;
-    }
-    
-    public static boolean hasDairy(ItemStack food)
-    {
-		return false;
-    }
- 
 	private static void loadFromConfig(Configuration config)
 	{
 		ConfigCategory category = config.getCategory("Nutrients");
 		
 		for (String name : category.getPropertyOrder())
 		{
-			boolean[] nutrientValues = new boolean[5];
-			String valueLower = category.get(name).getString().toLowerCase();
-			
-			if (valueLower.contains("V"))
-			{
-				nutrientValues[VEGETABLE] = true;
-			}
-			if (valueLower.contains("F"))
-			{
-				nutrientValues[FRUIT] = true;
-			}
-			if (valueLower.contains("G"))
-			{
-				nutrientValues[GRAIN] = true;
-			}
-			if (valueLower.contains("D"))
-			{
-				nutrientValues[DAIRY] = true;
-			}
-			if (valueLower.contains("P"))
-			{
-				nutrientValues[PROTEIN] = true;
-			}
-			
-			nutrientMap.put(name, nutrientValues);
 		}
 	}
 	
-	private static void handleRecipe(ArrayList<HashMap<String, String[]>> recipes, ItemStack output, Object[] ingredients)
+	private static void handleRecipe(ItemStack output, Object[] ingredients)
 	{
-		String targetItem = Item.itemRegistry.getNameForObject(output.getItem());
-
+		List rawIngredients = new ArrayList();
+		
 		for (Object ingredient : ingredients)
 		{
-			if (ingredient == null)
+			if (ingredient == null ||
+				ingredient == juicer || 
+			    ingredient == cuttingboard || 
+			    ingredient == pot || 
+			    ingredient == skillet || 
+			    ingredient == saucepan || 
+			    ingredient == bakeware || 
+			    ingredient == mortarandpestle || 
+			    ingredient == mixingbowl) 
 			{
 				continue;
 			}
 			
-			if (!ingredientMap.containsKey(targetItem))
-			{
-				ingredientMap.put(targetItem, new HashSet<String>());
-			}
-			
 			if (ingredient instanceof ItemStack)
 			{
-				ItemStack itemStack = (ItemStack)ingredient;
-				
-				ingredientMap.get(targetItem).add(Item.itemRegistry.getNameForObject(itemStack.getItem()));
+				rawIngredients.add(ingredient);
 			}			
 			else if (ingredient instanceof ArrayList)
 			{
@@ -175,16 +114,16 @@ public class NutritionManager
 					continue;
 				}
 				
-				ingredientMap.get(targetItem).add(locateOreDictEntryName(arrayList));				
+				rawIngredients.add(locateOreDictEntryName(arrayList));				
 			}
 		}
 	}
 
-	private static String locateOreDictEntryName(ArrayList arrayList)
+	private static Object locateOreDictEntryName(ArrayList arrayList)
 	{
 		if (arrayList.size() == 1)
 		{
-			return Item.itemRegistry.getNameForObject(((ItemStack)arrayList.get(0)).getItem());
+			return arrayList.get(0);
 		}
 		
 		HashSet<Integer> ids = createSet(OreDictionary.getOreIDs((ItemStack)arrayList.get(0)));
@@ -256,5 +195,30 @@ public class NutritionManager
 		}
 		
 		return newSet;
+	}
+
+	public static boolean hasDairy(ItemStack stack)
+	{
+		return false;
+	}
+
+	public static boolean hasVegetable(ItemStack stack)
+	{
+		return false;
+	}
+
+	public static boolean hasFruit(ItemStack stack)
+	{
+		return false;
+	}
+
+	public static boolean hasGrain(ItemStack stack)
+	{
+		return false;
+	}
+	
+	public static boolean hasProtein(ItemStack stack)
+	{
+		return false;
 	}
 }
