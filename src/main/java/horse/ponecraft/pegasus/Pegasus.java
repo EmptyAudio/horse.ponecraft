@@ -25,7 +25,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
-import net.minecraftforge.permissions.PermissionsManager.RegisteredPermValue;
+import net.minecraftforge.permission.PermissionLevel;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -115,7 +115,7 @@ public class Pegasus
         
         TConstructRegistry.activeModifiers.add(new PegasusToolMod());
         
-        APIRegistry.perms.registerPermission(FlightPermissionName, RegisteredPermValue.FALSE, "Allows pegasus-style flight when granted.");
+        APIRegistry.perms.registerPermission(FlightPermissionName, PermissionLevel.FALSE, "Allows pegasus-style flight when granted.");
         
         TConstructIMC.addMaterial(RubyMaterial, "Ruby", 2, 400, 800, 1, 0.8f, 0, 0, 0, EnumChatFormatting.RED, 180, 72, 72, 1, 1, 1, 1);
         TConstructIMC.addMaterial(SapphireMaterial, "Sapphire", 2, 400, 800, 1, 0.8f, 0, 0, 0, EnumChatFormatting.BLUE, 72, 112, 208, 1, 1, 1, 1);
