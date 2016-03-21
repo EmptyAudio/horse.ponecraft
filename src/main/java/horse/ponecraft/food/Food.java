@@ -1,6 +1,6 @@
 package horse.ponecraft.food;
 
-import horse.ponecraft.earth.BlockCooktop;
+import horse.ponecraft.earth.blocks.BlockCooktop;
 
 import java.util.ArrayList;
 import java.util.HashMap;

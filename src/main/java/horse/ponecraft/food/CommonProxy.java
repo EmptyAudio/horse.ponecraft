@@ -1,5 +1,8 @@
 package horse.ponecraft.food;
 
+import horse.ponecraft.food.nutrition.BombAssTeaEvents;
+import horse.ponecraft.food.nutrition.FoodEvents;
+import horse.ponecraft.food.nutrition.NutritionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import cpw.mods.fml.common.event.FMLInitializationEvent;

@@ -1,0 +1,23 @@
+container.baubles.mana=Mana
+container.baubles.vis=Vis
+
+raceselection.none.title=Choose a Race
+raceselection.none.description=Select a flag to choose a race!
+raceselection.earthpony.title=Earth Pony
+raceselection.earthpony.description=Masters of agriculture, Earth Ponies can cook delicious and nutritious foods as well as cultivate powerful magical flora. Use your green hooves to keep everyone else well fed and supplied with plant-based magic!
+raceselection.pegasus.title=Pegasus
+raceselection.pegasus.description=Masters of the sky, Pegasi are gifted with the power of flight. Their military heritage gives them an awesome arsenal of weapons and tools to choose from. Scout the wilds and help your friends tame weather itself!
+raceselection.unicorn.title=Unicorn
+raceselection.unicorn.description=Masters of magic, Unicorns can channel all manner of different spells and craft magical rods and wands that can do incredible things. Help spread the friendship of magic!
+raceselection.zebra.title=Zebra
+raceselection.zebra.description=Mysterious and secretive, Zebra are capable of incredible feats but few know their true power. Will you use your power for the good of your friends or for yourself?
+
+race.hotbar.only.earthpony=Whoops! You'd need to be more in touch with nature to hang onto this.
+race.hotbar.only.pegasus=Whoops! You're not quite sure how to hang onto it properly.
+race.hotbar.only.unicorn=Whoops! You don't know enough about magic to hang onto this.
+race.hotbar.only.zebra=Whoops! You can't make heads or tails of this strange thing.
+
+race.blocks.only.earthpony=This looks like something only an earth pony could use.
+race.blocks.only.pegasus=This looks like something only a pegasus could use.
+race.blocks.only.unicorn=This looks like something only a unicorn could use.
+race.blocks.only.zebra=This looks like something only a zebra could use.

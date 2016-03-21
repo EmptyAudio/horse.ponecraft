@@ -1,5 +1,6 @@
 package horse.ponecraft.food;
 
+import horse.ponecraft.food.gui.NutritionTipOverlayHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 
 public class ClientProxy extends CommonProxy

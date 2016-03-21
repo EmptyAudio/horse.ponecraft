@@ -1,5 +1,6 @@
 package horse.ponecraft.earth;
 
+import horse.ponecraft.earth.blocks.BlockCooktop;
 import scala.Console;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -15,13 +16,13 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = Earth.MODID, version = Earth.VERSION, name = "Ponecraft Earth Pony", dependencies = "after:harvestcraft")
+@Mod(modid = Earth.MODID, version = Earth.VERSION, name = "Ponecraft Earth Pony", dependencies = "required-after:harvestcraft")
 public class Earth
 {
     public static final String MODID = "horse.ponecraft.earth";
     public static final String VERSION = "1.0";
     
-    public static final BlockCooktop cooktop = new BlockCooktop("cooktop");
+    public static final BlockCooktop cooktop = new BlockCooktop();
     
     @Instance("horse.ponecraft.earth")
     public static Earth instance;

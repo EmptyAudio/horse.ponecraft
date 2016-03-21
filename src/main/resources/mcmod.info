@@ -1,58 +1,16 @@
 [
 {
-  "modid": "horse.ponecraft.earth",
-  "name": "Ponecraft Earth Pony",
-  "description": "Additions for Earth Ponies on Ponecraft",
+  "modid": "examplemod",
+  "name": "Example Mod",
+  "description": "Example placeholder mod.",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["EmptyAudio"],
-  "credits": "The Forge and FML guys and everyone on MLPG",
-  "logoFile": "",
-  "screenshots": [],
-  "dependencies": ["harvestcraft"]
-},
-{
-  "modid": "horse.ponecraft.pegasus",
-  "name": "Ponecraft Earth Pegasus",
-  "description": "Additions for Pegasi on Ponecraft",
-  "version": "${version}",
-  "mcversion": "${mcversion}",
-  "url": "",
-  "updateUrl": "",
-  "authorList": ["EmptyAudio"],
-  "credits": "The Forge and FML guys and everyone on MLPG",
+  "authorList": ["ExampleDude"],
+  "credits": "The Forge and FML guys, for making this example",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []
-},
-{
-  "modid": "horse.ponecraft.food",
-  "name": "Ponecraft Food",
-  "description": "Nutrition system for Ponecraft",
-  "version": "${version}",
-  "mcversion": "${mcversion}",
-  "url": "",
-  "updateUrl": "",
-  "authorList": ["EmptyAudio"],
-  "credits": "The Forge and FML guys and everyone on MLPG",
-  "logoFile": "",
-  "screenshots": [],
-  "dependencies": ["harvestcraft"]
-},
-{
-  "modid": "horse.ponecraft.food",
-  "name": "Ponecraft Food",
-  "description": "Nutrition system for Ponecraft",
-  "version": "${version}",
-  "mcversion": "${mcversion}",
-  "url": "",
-  "updateUrl": "",
-  "authorList": ["EmptyAudio"],
-  "credits": "The Forge and FML guys and everyone on MLPG",
-  "logoFile": "",
-  "screenshots": [],
-  "dependencies": ["THAUMCRAFT"]
 }
 ]

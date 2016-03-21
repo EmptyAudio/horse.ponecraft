@@ -1,6 +1,8 @@
 package horse.ponecraft.earth;
 
-import horse.ponecraft.food.NutritionManager;
+import horse.ponecraft.earth.gui.GuiHandler;
+import horse.ponecraft.earth.tiles.TileEntityCooktop;
+import horse.ponecraft.food.nutrition.NutritionManager;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -22,6 +24,7 @@ import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class CommonProxy
@@ -32,7 +35,10 @@ public class CommonProxy
     {
         oven = (Item)Item.itemRegistry.getObject("harvestcraft:oven");
         
-        GameRegistry.registerBlock(Earth.cooktop, Earth.cooktop.getUnlocalizedName());
+		NetworkRegistry.INSTANCE.registerGuiHandler(Earth.instance, new GuiHandler());
+
+		GameRegistry.registerBlock(Earth.cooktop, "cooktop");
+        System.out.println("Registered cooktop");
         
         GameRegistry.registerTileEntity(TileEntityCooktop.class, "CooktopTileEntity");
         

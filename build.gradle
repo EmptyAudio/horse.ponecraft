@@ -49,7 +49,7 @@ group= "horse.ponecraft" // http://maven.apache.org/guides/mini/guide-naming-con
 archivesBaseName = "horse.ponecraft"
 
 minecraft {
-    version = "1.7.10-10.13.2.1291"
+    version = "1.7.10-10.13.4.1492-1.7.10"
     runDir = "eclipse"
 }
 
@@ -70,9 +70,9 @@ dependencies {
     compile "codechicken:CodeChickenLib:1.7.10-1.1.1.106:dev"
     compile "codechicken:CodeChickenCore:1.7.10-1.0.4.29:dev"
     compile "codechicken:NotEnoughItems:1.7.10-1.0.3.72:dev"
-    compile "codechicken:ForgeMultipart:1.7.10-1.1.0.314:dev"
-    compile "mantle:Mantle:1.7.10-0.3.2.jenkins187:deobf"
-    compile "tconstruct:TConstruct:1.7.10-1.8.2.build858:deobf"
+    compile "codechicken:ForgeMultipart:1.7.10-1.2.0.345:dev"
+    compile "mantle:Mantle:1.7.10-0.3.2.jenkins190:deobf"
+    compile "tconstruct:TConstruct:1.7.10-1.8.7.build981:deobf"
     compile "applecore:AppleCore:1.7.10-1.2.1+101.b8584:deobf"
 }
 
@@ -100,7 +100,7 @@ jar
 {
     manifest
     {
-        attributes 'FMLCorePlugin': 'horse.ponecraft.unicorn.UnicornCore'
+        attributes 'FMLCorePlugin': 'horse.ponecraft.core.PonyCore'
         attributes 'FMLCorePluginContainsFMLMod': 'true'
     }
 }

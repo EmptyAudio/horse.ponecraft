@@ -1,0 +1,18 @@
+{
+    "hotbar-block":
+    {
+        "category": "player",
+        "sounds":
+        [
+            {"name": "hotbar-block","stream": false}
+        ]
+    },
+    "blocked-block":
+    {
+        "category": "player",
+        "sounds":
+        [
+            {"name": "blocked-block","stream": false}
+        ]
+    }
+}
