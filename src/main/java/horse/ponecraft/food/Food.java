@@ -30,7 +30,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import scala.Console;
 import squeek.applecore.api.food.FoodEvent;
 
-@Mod(modid = Food.MODID, version = Food.VERSION, name = "Ponecraft Food", dependencies = "after:harvestcraft")
+@Mod(modid = Food.MODID, version = Food.VERSION, name = "Ponecraft Food", dependencies = "required-after:harvestcraft;required-after:Forestry;required-after:Natura")
 public class Food
 {
     public static final String MODID = "horse.ponecraft.food";
